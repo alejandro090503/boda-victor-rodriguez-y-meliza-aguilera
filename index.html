@@ -601,48 +601,38 @@ h1 em,h2 em,h3 em{font-style:italic;font-weight:500;color:var(--accent)}
 .gallery h2{font-size:clamp(38px,5.5vw,60px);margin-bottom:20px}
 .gallery-sub{font-family:var(--script);color:var(--gold);font-size:32px;line-height:1}
 
-/* ====== GALERÍA — Carrusel horizontal con snap (estilo boda-damaris-y-jesus) ====== */
+/* ====== GALERÍA — Carrusel 3D giratorio (estilo boda-jennifer) ====== */
 .wheel-stage{
-  position:relative;width:calc(100% + 48px);margin:40px -24px 0;
-  overflow:hidden;
+  position:relative;width:100%;height:440px;max-width:1080px;
+  margin:40px auto 0;perspective:1400px;overflow:visible;
+  touch-action:pan-y;
 }
 .wheel{
-  display:flex;gap:14px;
-  overflow-x:auto;overflow-y:hidden;
-  scroll-snap-type:x mandatory;
-  -webkit-overflow-scrolling:touch;
-  padding:16px 24px 20px;
-  scrollbar-width:none;
+  position:absolute;inset:0;
+  transform-style:preserve-3d;cursor:grab;
 }
-.wheel::-webkit-scrollbar{display:none}
+.wheel.dragging{cursor:grabbing}
 .wheel-item{
-  flex:0 0 220px;height:308px;
-  border-radius:14px;overflow:hidden;
-  border:1.5px solid color-mix(in srgb, var(--gold) 34%, transparent);
-  box-shadow:0 10px 32px rgba(15,30,64,.22);
-  scroll-snap-align:center;
+  position:absolute;width:170px;height:240px;
+  left:50%;top:50%;margin-left:-85px;margin-top:-120px;
+  border-radius:16px;overflow:hidden;
+  border:2px solid color-mix(in srgb, var(--gold) 40%, transparent);
+  box-shadow:0 12px 40px rgba(15,30,64,.30);
   background:var(--paper);
-  transition:transform .3s ease,box-shadow .3s ease;
+  user-select:none;-webkit-user-select:none;
+  backface-visibility:hidden;-webkit-backface-visibility:hidden;
 }
-.wheel-item:hover{transform:translateY(-4px);box-shadow:0 16px 44px rgba(30,58,107,.30)}
 .wheel-item img{
-  width:100%;height:100%;
-  object-fit:cover;object-position:center;
-  display:block;pointer-events:none;
-  filter:saturate(1.02) contrast(1.04);
+  width:100%;height:100%;object-fit:cover;object-position:center;
+  display:block;pointer-events:none;-webkit-user-drag:none;
 }
 .wheel-hint{
-  font-family:var(--serif);
-  font-style:italic;
-  font-size:15px;
-  letter-spacing:3px;
-  color:var(--accent);
-  text-align:center;
-  margin-top:26px;
-  opacity:.75;
+  font-family:var(--serif);font-style:italic;font-size:15px;letter-spacing:3px;
+  color:var(--accent);text-align:center;margin-top:26px;opacity:.75;
 }
 @media (max-width:520px){
-  .wheel-item{flex:0 0 200px;height:280px}
+  .wheel-stage{height:380px;perspective:1000px}
+  .wheel-item{width:140px;height:198px;margin-left:-70px;margin-top:-99px}
 }
 
 /* ============ KIDS POLICY ============ */
@@ -999,7 +989,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--gold);outline-offse
 }
 
 /* ============ LIGHTBOX — rueda de fotos ============ */
-.wheel-item{cursor:default}
+.wheel-item{cursor:grab}
 #lightbox{
   position:fixed;inset:0;z-index:9990;
   display:none;align-items:center;justify-content:center;
@@ -1596,25 +1586,25 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--gold);outline-offse
     <div class="container gallery-head">
       <div class="eyebrow">Momentos</div>
       <h2>Del camino <em>que</em> nos trajo aquí</h2>
-      <div class="gallery-sub">desliza y revívelo con nosotros</div>
+      <div class="gallery-sub">gira y revívelo con nosotros</div>
     </div>
     <div class="wheel-stage">
       <div class="wheel" id="wheel">
-        <div class="wheel-item"><img src="foto1.jpg" alt="Meliza y Víctor" loading="lazy"></div>
-        <div class="wheel-item"><img src="foto2.jpg" alt="Meliza y Víctor" loading="lazy"></div>
-        <div class="wheel-item"><img src="foto3.jpg" alt="Meliza y Víctor" loading="lazy"></div>
-        <div class="wheel-item"><img src="foto4.jpg" alt="Meliza y Víctor" loading="lazy"></div>
-        <div class="wheel-item"><img src="foto5.jpg" alt="Meliza y Víctor" loading="lazy"></div>
-        <div class="wheel-item"><img src="foto6.jpg" alt="Meliza y Víctor" loading="lazy"></div>
-        <div class="wheel-item"><img src="foto1.jpg" alt="Meliza y Víctor" loading="lazy"></div>
-        <div class="wheel-item"><img src="foto2.jpg" alt="Meliza y Víctor" loading="lazy"></div>
-        <div class="wheel-item"><img src="foto3.jpg" alt="Meliza y Víctor" loading="lazy"></div>
-        <div class="wheel-item"><img src="foto4.jpg" alt="Meliza y Víctor" loading="lazy"></div>
-        <div class="wheel-item"><img src="foto5.jpg" alt="Meliza y Víctor" loading="lazy"></div>
-        <div class="wheel-item"><img src="foto6.jpg" alt="Meliza y Víctor" loading="lazy"></div>
+        <div class="wheel-item"><img src="foto1.jpg" alt="Meliza y Víctor"></div>
+        <div class="wheel-item"><img src="foto2.jpg" alt="Meliza y Víctor"></div>
+        <div class="wheel-item"><img src="foto3.jpg" alt="Meliza y Víctor"></div>
+        <div class="wheel-item"><img src="foto4.jpg" alt="Meliza y Víctor"></div>
+        <div class="wheel-item"><img src="foto5.jpg" alt="Meliza y Víctor"></div>
+        <div class="wheel-item"><img src="foto6.jpg" alt="Meliza y Víctor"></div>
+        <div class="wheel-item"><img src="foto1.jpg" alt="Meliza y Víctor"></div>
+        <div class="wheel-item"><img src="foto2.jpg" alt="Meliza y Víctor"></div>
+        <div class="wheel-item"><img src="foto3.jpg" alt="Meliza y Víctor"></div>
+        <div class="wheel-item"><img src="foto4.jpg" alt="Meliza y Víctor"></div>
+        <div class="wheel-item"><img src="foto5.jpg" alt="Meliza y Víctor"></div>
+        <div class="wheel-item"><img src="foto6.jpg" alt="Meliza y Víctor"></div>
       </div>
     </div>
-    <p class="wheel-hint">Desliza para ver más</p>
+    <p class="wheel-hint">Arrastra para girar</p>
   </section>
 
   <!-- DIVIDER: surface → paper -->
@@ -2023,25 +2013,65 @@ gsap.fromTo('.swatch',{opacity:0,scale:.4,y:30},{opacity:1,scale:1,y:0,duration:
 gsap.fromTo('.dress .eyebrow, .dress h2, .dc-note, .dc-warn, .dress-note',{opacity:0,y:14},{opacity:1,y:0,duration:.9,stagger:.08,scrollTrigger:{trigger:'.dress',start:'top 78%'}});
 gsap.fromTo('.dc-fig',{opacity:0,y:18},{opacity:1,y:0,duration:.7,stagger:.12,ease:'power2.out',scrollTrigger:{trigger:'.dc-figures',start:'top 82%'}});
 
-// ------ GALERÍA — Carrusel horizontal con snap (estilo boda-damaris-y-jesus) ------
-(function initGallery(){
+// ------ GALERÍA — Carrusel 3D: gira solo, se arrastra y al soltar vuelve a girar ------
+(function initWheel(){
   var ring = document.getElementById('wheel');
-  if(!ring) return;
+  var stage = document.querySelector('.wheel-stage');
+  if(!ring || !stage) return;
   var cards = ring.querySelectorAll('.wheel-item');
-  if(!cards.length) return;
+  var n = cards.length; if(!n) return;
 
-  gsap.fromTo(cards,{opacity:0,y:26},{opacity:1,y:0,duration:.9,stagger:.06,ease:'power2.out',
-    scrollTrigger:{trigger:'.wheel-stage',start:'top 85%'}});
+  var AUTO = prefersReduced ? 0 : -0.12;   // grados por frame (lento, hacia un lado)
+  var rot = 0, vel = AUTO, drag = false, lastX = 0, visible = false, raf = null;
 
-  // Pista visual: asoma la 3a tarjeta y regresa
-  if(prefersReduced) return;
-  var third = cards[2];
-  if(third){
-    ScrollTrigger.create({trigger:'.wheel-stage',start:'top 80%',once:true,onEnter:function(){
-      setTimeout(function(){ ring.scrollTo({left: third.offsetLeft - 24, behavior:'smooth'}); }, 600);
-      setTimeout(function(){ ring.scrollTo({left: 0, behavior:'smooth'}); }, 2000);
-    }});
+  function layout(){
+    var w = cards[0].offsetWidth || 150;
+    var radius = Math.round((w + 22) * n / (2 * Math.PI));
+    for(var i=0;i<n;i++){
+      cards[i].style.transform = 'rotateY(' + (360/n*i) + 'deg) translateZ(' + radius + 'px)';
+    }
+    ring.dataset.z = radius;
   }
+  function render(){
+    ring.style.transform = 'translateZ(-' + (ring.dataset.z||300) + 'px) rotateY(' + rot + 'deg)';
+  }
+  function tick(){
+    if(!drag){
+      // la inercia del arrastre se va apagando hasta volver a la velocidad automática
+      vel += (AUTO - vel) * 0.04;
+      rot += vel;
+      render();
+    }
+    raf = visible ? requestAnimationFrame(tick) : null;
+  }
+  function start(){ if(!raf && visible) raf = requestAnimationFrame(tick); }
+
+  layout(); render();
+  window.addEventListener('resize', function(){ layout(); render(); });
+
+  if('IntersectionObserver' in window){
+    new IntersectionObserver(function(es){
+      visible = es[0].isIntersecting; start();
+    },{rootMargin:'200px'}).observe(stage);
+  } else { visible = true; start(); }
+  // red de seguridad si el observer no dispara
+  setTimeout(function(){ if(!raf){ visible = true; start(); } }, 4000);
+
+  function down(x){ drag = true; lastX = x; vel = 0; ring.classList.add('dragging'); }
+  function move(x){
+    if(!drag) return;
+    var d = (x - lastX) * 0.35;
+    lastX = x; vel = d; rot += d; render();
+  }
+  function up(){ if(!drag) return; drag = false; ring.classList.remove('dragging'); start(); }
+
+  ring.addEventListener('mousedown', function(e){ e.preventDefault(); down(e.clientX); });
+  window.addEventListener('mousemove', function(e){ move(e.clientX); });
+  window.addEventListener('mouseup', up);
+  ring.addEventListener('touchstart', function(e){ down(e.touches[0].clientX); }, {passive:true});
+  ring.addEventListener('touchmove', function(e){ move(e.touches[0].clientX); }, {passive:true});
+  ring.addEventListener('touchend', up);
+  ring.addEventListener('touchcancel', up);
 })();
 gsap.fromTo('.gallery-head > *',{opacity:0,y:18},{opacity:1,y:0,duration:1,stagger:.1,scrollTrigger:{trigger:'.gallery-head',start:'top 80%'}});
 gsap.fromTo('.wheel-hint',{opacity:0,y:8},{opacity:.72,y:0,duration:.9,scrollTrigger:{trigger:'.wheel-hint',start:'top 92%'}});
